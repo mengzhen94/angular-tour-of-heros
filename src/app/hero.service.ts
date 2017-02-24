@@ -6,6 +6,11 @@ import { HEROES } from './mock-heroes';
 //Angular may need to inject other dependencies into this service
 @Injectable()
 export class HeroService {
+    getHero(id: number): Promise<Hero> {
+        return this.getHeroes()
+            .then(heroes => heroes.find(hero => hero.id === id));
+    }
+
     getHeroes(): Promise<Hero[]> {
         return Promise.resolve(HEROES);
     }
